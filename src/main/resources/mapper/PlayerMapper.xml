@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhang.dao.PlayerMapper" >
+  <resultMap id="BaseResultMap" type="com.zhang.entity.Player" >
+    <id column="p_id" property="pId" jdbcType="INTEGER" />
+    <result column="p_name" property="pName" jdbcType="VARCHAR" />
+    <result column="p_age" property="pAge" jdbcType="VARCHAR" />
+    <result column="p_country" property="pCountry" jdbcType="VARCHAR" />
+    <result column="p_team" property="pTeam" jdbcType="VARCHAR" />
+    <result column="p_introduce" property="pIntroduce" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    p_id, p_name, p_age, p_country, p_team, p_introduce
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from player
+    where p_id = #{pId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from player
+    where p_id = #{pId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zhang.entity.Player" >
+    <selectKey resultType="java.lang.Integer" keyProperty="pId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into player (p_name, p_age, p_country, 
+      p_team, p_introduce)
+    values (#{pName,jdbcType=VARCHAR}, #{pAge,jdbcType=VARCHAR}, #{pCountry,jdbcType=VARCHAR}, 
+      #{pTeam,jdbcType=VARCHAR}, #{pIntroduce,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhang.entity.Player" >
+    <selectKey resultType="java.lang.Integer" keyProperty="pId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into player
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pName != null" >
+        p_name,
+      </if>
+      <if test="pAge != null" >
+        p_age,
+      </if>
+      <if test="pCountry != null" >
+        p_country,
+      </if>
+      <if test="pTeam != null" >
+        p_team,
+      </if>
+      <if test="pIntroduce != null" >
+        p_introduce,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pName != null" >
+        #{pName,jdbcType=VARCHAR},
+      </if>
+      <if test="pAge != null" >
+        #{pAge,jdbcType=VARCHAR},
+      </if>
+      <if test="pCountry != null" >
+        #{pCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="pTeam != null" >
+        #{pTeam,jdbcType=VARCHAR},
+      </if>
+      <if test="pIntroduce != null" >
+        #{pIntroduce,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhang.entity.Player" >
+    update player
+    <set >
+      <if test="pName != null" >
+        p_name = #{pName,jdbcType=VARCHAR},
+      </if>
+      <if test="pAge != null" >
+        p_age = #{pAge,jdbcType=VARCHAR},
+      </if>
+      <if test="pCountry != null" >
+        p_country = #{pCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="pTeam != null" >
+        p_team = #{pTeam,jdbcType=VARCHAR},
+      </if>
+      <if test="pIntroduce != null" >
+        p_introduce = #{pIntroduce,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where p_id = #{pId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhang.entity.Player" >
+    update player
+    set p_name = #{pName,jdbcType=VARCHAR},
+      p_age = #{pAge,jdbcType=VARCHAR},
+      p_country = #{pCountry,jdbcType=VARCHAR},
+      p_team = #{pTeam,jdbcType=VARCHAR},
+      p_introduce = #{pIntroduce,jdbcType=VARCHAR}
+    where p_id = #{pId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from player
+  </select>
+</mapper>
