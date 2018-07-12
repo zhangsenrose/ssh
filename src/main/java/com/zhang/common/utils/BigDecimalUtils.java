@@ -1,5 +1,6 @@
 package com.zhang.common.utils;
 
+import javax.validation.constraints.Max;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
@@ -45,17 +46,56 @@ public class BigDecimalUtils {
         return result;
     }
 
+    /**
+     *  BigDecimal乘法运算
+     * @param muls 乘数
+     * @return  积
+     */
+    public static BigDecimal mul(double... muls){
+        if (muls == null || muls.length == 0){
+            return BigDecimal.ZERO;
+        }
+        BigDecimal result =  BigDecimal.valueOf(1);
+        for (double a : muls){
+            result = result.multiply(BigDecimal.valueOf(a));
+        }
+        return result;
+    }
+
+
+    /**
+     * BigDecimal除法运算
+     * @param divs 只有第一个是被除数，其余全为除数
+     * @return 商
+     */
+    public static BigDecimal div(BigDecimal... divs){
+        if (divs == null || divs.length == 0){
+            return BigDecimal.ZERO;
+        }
+        BigDecimal result = divs[0];
+        for (int  n = 1, max = divs.length; n <max; n++ ){
+            result = result.divide(divs[n], DEFAULT_SCALE,DEFAULT_ROUNDING_MODE);
+        }
+        return result;
+    }
+
+    /**
+     * 判断是否为null值
+     * @param b
+     * @return
+     */
+    public static BigDecimal checkAndSetDefault(BigDecimal b){
+        if (b == null){
+            return BigDecimal.ZERO;
+        }
+        b = b.setScale(2,BigDecimal.ROUND_UP);
+        return  b;
+    }
+
 
 
     public static void main(String[] args) {
-//        int a = 10;
-//        int b = 20;
-//        int c = 30;
-//        int d = 60;
-//        BigDecimal ba = new BigDecimal(a);
-//        BigDecimal bb = new BigDecimal(b);
-//        BigDecimal bc = new BigDecimal(c);
-//        BigDecimal bd = new BigDecimal(d);
+
         double a= 10;
         double b = 50;
 
