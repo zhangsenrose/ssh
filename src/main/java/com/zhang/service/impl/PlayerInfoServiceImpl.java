@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Create By ZhangSenWei on 2018/7/2
@@ -22,4 +23,11 @@ public class PlayerInfoServiceImpl implements PlayerInfoService {
     public List<Player> getPlayerInfo() {
         return playerMapper.selectAll();
     }
+
+    @Override
+    public List<Player> getPlayerByPIds(Map<String, Object> params) {
+        return playerMapper.selectByParams(params);
+    }
+
+
 }
