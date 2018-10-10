@@ -1,6 +1,7 @@
 package com.zhang.service;
 
 import com.zhang.entity.Player;
+import com.zhang.entity.TestL;
 
 import java.util.List;
 import java.util.Map;
@@ -11,4 +12,6 @@ import java.util.Map;
 public interface PlayerInfoService {
     List<Player> getPlayerInfo();
     List<Player> getPlayerByPIds(Map<String,Object> params);
+
+
 }
