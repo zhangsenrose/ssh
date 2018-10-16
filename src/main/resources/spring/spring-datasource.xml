@@ -31,7 +31,7 @@
         <!--配置SqlSessionFactory对象-->
         <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
                 <property name="dataSource" ref="dateSource"/>
-                <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+                <property name="mapperLocations" value="classpath:mapper/PlayerMapper.xml"/>
         </bean>
 
         <!--扫描dao包-->

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-4.0.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+    <!--初始化shiro框架提供的过滤器-->
+    <bean id="shiroFilterFactoryBean" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!--注入安全管理器-->
+        <property name="securityManager" ref="securityManager"/>
+        <!--权限认证页面-->
+        <property name="loginUrl" value="/login.html"/>
+        <!--权限认证后跳转的页面-->
+        <property name="successUrl" value="/index.html"/>
+        <!--权限认证失败跳转的页面-->
+        <property name="unauthorizedUrl" value="/unauthorizedUrl.html"/>
+        <!--制定拦截规则-->
+        <property name="filterChainDefinitions">
+            <value>
+                /webservice/** = anno
+                /upload/** = anno
+                /data/** = anno
+                /** = authc
+            </value>
+        </property>
+    </bean>
+
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="MyRealm"/>
+        <property name="cacheManager" ref="cacheManager"/>
+    </bean>
+    <bean id="MyRealm" class="com.zhang.base.shiro.MyRealm"/>
+
+    <!-- 用户授权信息Cache -->
+    <bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
+
+    <!--shiro内部lifecycle函数bean的执行-->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+    <!--aop方法级别权限检查-->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+    depends-on="lifecycleBeanPostProcessor">
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
+    <!--开启shiro注解-->
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+
+    <!-- 配置凭证算法匹配器 -->
+     <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+        <!-- Md5算法 -->
+         <property name="hashAlgorithmName" value="Md5"></property>
+     </bean>
+
+</beans>

@@ -1,6 +1,8 @@
 package com.zhang.controller;
 
+import java.util.Queue;
 import java.util.concurrent.*;
+import java.util.concurrent.locks.Lock;
 
 /**
  * Create By ZhangSenWei on 2018/10/9
@@ -72,7 +74,7 @@ public class QueuePractice {
         service.submit(consumer);
         //程序运行10s
         try {
-            Thread.sleep(100000);
+            Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
