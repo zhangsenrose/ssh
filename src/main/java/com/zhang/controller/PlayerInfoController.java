@@ -1,10 +1,10 @@
 package com.zhang.controller;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.zhang.common.PageInfoDto;
 import com.zhang.common.StringToolsUtil;
 import com.zhang.entity.Player;
-import com.zhang.entity.TestL;
 import com.zhang.service.PlayerInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -53,15 +53,6 @@ public class PlayerInfoController {
         searchMap.put("PIds",PIds);
         return  playerInfoService.getPlayerByPIds(searchMap);
 
-    }
-
-    @RequestMapping("/postList")
-    @ResponseBody
-    @ApiOperation(value = "测试接受传来的List",httpMethod = "POST")
-    public PageInfoDto postList(
-            @ApiParam(value = "List<testL>")@RequestBody List<TestL> testL){
-        System.out.println(testL);
-        return new PageInfoDto(0l,testL);
     }
 
 }

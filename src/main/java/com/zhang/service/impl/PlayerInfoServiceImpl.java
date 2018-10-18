@@ -15,19 +15,14 @@ import java.util.Map;
 @Service
 public class PlayerInfoServiceImpl implements PlayerInfoService {
 
-    @Resource
-    private PlayerMapper playerMapper;
-
 
     @Override
     public List<Player> getPlayerInfo() {
-        return playerMapper.selectAll();
+        return null;
     }
 
     @Override
     public List<Player> getPlayerByPIds(Map<String, Object> params) {
-        return playerMapper.selectByParams(params);
+        return null;
     }
-
-
 }
