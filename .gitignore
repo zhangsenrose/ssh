@@ -1,0 +1,10 @@
+.idea
+*.iml
+out
+gen
+
+.idea/
+ssh.iml
+target/
+.gitignore
+src/main/resources/generatorConfig.xml
