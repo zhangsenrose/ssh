@@ -223,6 +223,13 @@
       <version>1.2.3</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/com.alibaba/dubbo-common -->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>dubbo-common</artifactId>
+      <version>2.6.4</version>
+    </dependency>
+
 
 
   </dependencies>

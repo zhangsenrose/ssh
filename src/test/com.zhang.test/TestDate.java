@@ -7,6 +7,7 @@ import org.joda.time.LocalDate;
 import org.joda.time.Months;
 import org.junit.jupiter.api.Test;
 
+import javax.ejb.Local;
 import javax.sound.midi.Soundbank;
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -183,14 +184,25 @@ public class TestDate {
                 maxDate = list.get(i);
             }
         }
-
         System.out.println(sdf.format(maxDate));
+    }
+
+
+    @Test
+    public void testIdleDate(){
+        LocalDate idleDateStart = new LocalDate("2018-10-01");
+        LocalDate idleDateEnd = new LocalDate("2018-10-10");
+
+        LocalDate startDate1 = new LocalDate("2018-09-20");
+        LocalDate startDate2 = new LocalDate("2018-09-25");
+        //看是否一个时间段包含与另一个时间段
+
+
+
 
 
 
     }
-
-
 
 
 
