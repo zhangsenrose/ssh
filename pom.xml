@@ -229,6 +229,20 @@
       <artifactId>dubbo-common</artifactId>
       <version>2.6.4</version>
     </dependency>
+    <!-- cglib动态代理 -->
+    <dependency>
+      <groupId>cglib</groupId>
+      <artifactId>cglib</artifactId>
+      <version>2.2.2</version>
+    </dependency>
+      <!-- asm -->
+      <dependency>
+          <groupId>org.ow2.asm</groupId>
+          <artifactId>asm</artifactId>
+          <version>5.0.4</version>
+      </dependency>
+
+
 
 
 
