@@ -5,14 +5,14 @@ package com.zhang.personal.test;
  **/
 
 /**
- * 模拟死锁得产生
+ * 模拟死锁的产生
  */
 public class TestDeadLock implements  Runnable {
 
     public int flag = 0;
 
     private static Object object1 = new Object();
-    private static Object object2 = new Object();;
+    private static Object object2 = new Object();
 
     @Override
     public void run() {
