@@ -37,11 +37,11 @@ public class QueuePractice {
                 try {
                     while (true){
                         System.out.println("生产者准备生产苹果： " + System.currentTimeMillis());
-                        basket.produce();
-                        System.out.println("生产者准备生产苹果完毕： " + System.currentTimeMillis());
-                        System.out.println("生产后得苹果有： "+ basket.getAppleNumber()+" 个");
-                        Thread.sleep(300);
-                    }
+                    basket.produce();
+                    System.out.println("生产者准备生产苹果完毕： " + System.currentTimeMillis());
+                    System.out.println("生产后得苹果有： "+ basket.getAppleNumber()+" 个");
+                    Thread.sleep(300);
+                }
                 }catch (InterruptedException e) {
                     e.printStackTrace();
                 }
